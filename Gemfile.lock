@@ -53,6 +53,8 @@ GEM
       capistrano (~> 3.1)
       sshkit (~> 1.2)
     capistrano-harrow (0.5.3)
+    capistrano-passenger (0.2.0)
+      capistrano (~> 3.0)
     concurrent-ruby (1.0.4)
     debug_inspector (0.0.2)
     erubis (2.7.0)
@@ -149,6 +151,7 @@ DEPENDENCIES
   byebug
   capistrano
   capistrano-bundler
+  capistrano-passenger
   jbuilder (~> 2.5)
   listen (~> 3.0.5)
   puma (~> 3.0)

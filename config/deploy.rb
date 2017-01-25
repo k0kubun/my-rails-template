@@ -8,7 +8,7 @@ set :repo_url, 'git@github.com:k0kubun/railsapp.git'
 set :branch, ENV.fetch('BRANCH', `git rev-parse --abbrev-ref HEAD`.chomp)
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, '/home/deploy/railsapp-cap'
+set :deploy_to, "/home/deploy/railsapp-branches/#{ENV.fetch('NAME')}"
 
 # Default value for :scm is :git
 # set :scm, :git

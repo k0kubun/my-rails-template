@@ -3,7 +3,9 @@ role :app, %w[ubuntu]
 namespace :nginx do
   task :write_server do
     on roles(:app) do
-      server_io = StringIO.new(<<-SERVER)
+      conf_path = "/etc/nginx/railsapp.conf.d/#{ENV['NAME']}.conf"
+      unless test("test -f #{conf_path}")
+        server_io = StringIO.new(<<-SERVER)
 server {
   listen 80;
   server_name #{ENV['NAME']}.pragmatic-rails.com;
@@ -11,9 +13,11 @@ server {
   root /home/deploy/railsapp-branches/#{ENV['NAME']}/current/public;
   passenger_enabled on;
 }
-      SERVER
+        SERVER
 
-      upload!(server_io, "/etc/nginx/railsapp.conf.d/#{ENV['NAME']}.conf")
+        upload!(server_io, conf_path)
+        execute("sudo reload-nginx")
+      end
     end
   end
 end
